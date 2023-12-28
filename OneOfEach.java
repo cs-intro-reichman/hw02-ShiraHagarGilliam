@@ -6,25 +6,25 @@
 public class OneOfEach {
 	public static void main (String[] args) {
 		//// Put your code here
-		int randomChance = (int)(Math.random() * 2);
+		double randomChance = Math.random();
 		int childrenCount = 0;
-		int anotherRandomChance = 0;
+		boolean girl = false;
+		boolean boy = false;
+		
 		do {
-			if(randomChance == 0) {
+			if(randomChance < 0.5) {
+				girl = true;
 				System.out.print("g ");
 			} else {
+				boy = true;
 				System.out.print("b ");
 		    }
-			anotherRandomChance = (int)(Math.random() * 2);
+			randomChance = Math.random();
 			childrenCount = childrenCount + 1;
 		}
-		while(anotherRandomChance == randomChance);
-		if(anotherRandomChance == 0) {
-			System.out.println("g");
-		} else {
-			System.out.println("b");
-	    }
-		childrenCount = childrenCount + 1;
+		while(!(girl && boy));
+		
+		System.out.println("");
 		System.out.print("You made it... and you now have " + childrenCount + " children.");
 	}
 }

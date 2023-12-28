@@ -15,10 +15,11 @@ public class OneOfEachStats {
 		// Initailizes a random numbers generator with the given seed value
         Random generator = new Random(seed); 
 		
-		int randomChance = (int)((generator.nextDouble()) * 2);
-		int anotherRandomChance = 0;
+		double randomChance = generator.nextDouble();
 		int childrenCount = 0;
 		double finalChildrenNum = 0;
+		boolean girl = false;
+		boolean boy = false;
 		
 		int twoChildren = 0;
 		int threeChildren = 0;
@@ -26,12 +27,16 @@ public class OneOfEachStats {
 		
 		for(int i = 0; i < T; i++) {
 		do {
+			if(randomChance < 0.5) {
+				girl = true;
+			} else {
+				boy = true;
+		    }
+			randomChance = generator.nextDouble();
 			childrenCount = childrenCount + 1;
-			anotherRandomChance = (int)((generator.nextDouble()) * 2);
 		}
-		while(anotherRandomChance == randomChance);
+		while(!(girl && boy));
 		
-		childrenCount = childrenCount + 1;
 		if(childrenCount == 2) {
 			twoChildren = twoChildren + 1;
 		} else if(childrenCount == 3) {
@@ -41,6 +46,8 @@ public class OneOfEachStats {
 		}
 		finalChildrenNum = finalChildrenNum + childrenCount;
 		childrenCount = 0;
+		girl = false;
+		boy = false;
 		}
 		double avergeChildrenNum = finalChildrenNum / T;
 		System.out.println("Average: " + avergeChildrenNum + " children to get at least one of each gender.");

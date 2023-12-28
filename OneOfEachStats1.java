@@ -8,10 +8,11 @@ public class OneOfEachStats1 {
 	public static void main (String[] args) {
 		//// Put your code here
 		int T = Integer.parseInt(args[0]);
-		int randomChance = (int)(Math.random() * 2);
-		int anotherRandomChance = 0;
+		double randomChance = Math.random();
 		int childrenCount = 0;
 		double finalChildrenNum = 0;
+		boolean girl = false;
+		boolean boy = false;
 		
 		int twoChildren = 0;
 		int threeChildren = 0;
@@ -19,12 +20,16 @@ public class OneOfEachStats1 {
 		
 		for(int i = 0; i < T; i++) {
 		do {
+			if(randomChance < 0.5) {
+				girl = true;
+			} else {
+				boy = true;
+		    }
+			randomChance = Math.random();
 			childrenCount = childrenCount + 1;
-			anotherRandomChance = (int)(Math.random() * 2);
 		}
-		while(anotherRandomChance == randomChance);
+		while(!(girl && boy));
 		
-		childrenCount = childrenCount + 1;
 		if(childrenCount == 2) {
 			twoChildren = twoChildren + 1;
 		} else if(childrenCount == 3) {
@@ -34,6 +39,8 @@ public class OneOfEachStats1 {
 		}
 		finalChildrenNum = finalChildrenNum + childrenCount;
 		childrenCount = 0;
+		girl = false;
+		boy = false;
 		}
 		double avergeChildrenNum = finalChildrenNum / T;
 		System.out.println("Average: " + avergeChildrenNum + " children to get at least one of each gender.");
