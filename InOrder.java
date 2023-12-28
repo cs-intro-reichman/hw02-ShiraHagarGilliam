@@ -13,5 +13,5 @@ public class InOrder {
 			randomNum1 = (int)(Math.random() * 10);
 		}
 		while (randomNum1 >= randomNum2);
-		}
 	}
+}
